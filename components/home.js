@@ -57,32 +57,35 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000000", // Updated to black
     padding: 16,
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 16,
+    color: "#FFFFFF", // Adjusted for better visibility on black background
   },
   userItem: {
     padding: 12,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#333333", // Updated for a darker theme
     borderRadius: 8,
     marginBottom: 10,
   },
   userName: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "#FFFFFF", // Adjusted for visibility
   },
   userEmail: {
     fontSize: 14,
-    color: "#555",
+    color: "#CCCCCC", // Adjusted for visibility
     marginBottom: 8,
   },
   bookInfo: {
     fontSize: 16,
     marginLeft: 10,
+    color: "#FFFFFF", // Adjusted for visibility
   },
 });
 

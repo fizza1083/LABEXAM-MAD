@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import Home from '@/components/home' // Adjust the path based on your directory structure
+import Home from '@/components/home'
+
 
 export default function Index() {
   return (
@@ -25,4 +26,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-});
+}); 
