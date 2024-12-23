@@ -8,16 +8,18 @@ import {
   Button, 
   Image 
 } from "react-native";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useRouter } from "expo-router";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { app } from "@/config/firebase";
+import { Ionicons } from "@expo/vector-icons";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [favorites, setFavorites] = useState([]); // To keep track of favorite products
   const router = useRouter();
 
   useEffect(() => {
@@ -52,6 +54,23 @@ const Home = () => {
         )
       );
     }
+  };
+
+  const toggleFavorite = (productId) => {
+    // Update the favorites list
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(productId)) {
+        // Remove from favorites
+        return prevFavorites.filter((id) => id !== productId);
+      } else {
+        // Add to favorites
+        return [...prevFavorites, productId];
+      }
+    });
+
+    // Optionally update the Firebase database if you want to persist favorites
+    const db = getDatabase(app);
+    set(ref(db, `favorites/${productId}`), { favorite: true });
   };
 
   return (
@@ -97,6 +116,15 @@ const Home = () => {
                 ${item.price.toFixed(2)}
               </ThemedText>
             </View>
+
+            {/* Heart Icon for Favorites */}
+            <TouchableOpacity onPress={() => toggleFavorite(item.id)}>
+              <Ionicons
+                name={favorites.includes(item.id) ? "heart" : "heart-outline"}
+                size={24}
+                color={favorites.includes(item.id) ? "red" : "grey"}
+              />
+            </TouchableOpacity>
           </TouchableOpacity>
         )}
       />

@@ -2,15 +2,18 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import Home from '@/components/home'
+import Home from '@/components/home';
+import { createStackNavigator } from '@react-navigation/stack';
 
+// Create the Stack navigator instance
+const Stack = createStackNavigator();
 
 export default function Index() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText style={styles.title}>Welcome to My Library</ThemedText>
-      <Home />
-    </ThemedView>
+    <Stack.Navigator>
+      <Stack.Screen name="MY LIBRARY" component={Home} />
+      {/* Other screens */}
+    </Stack.Navigator>
   );
 }
 
@@ -18,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor:'maroon',
+    backgroundColor: 'maroon',
   },
   title: {
     paddingTop: 40,
@@ -27,4 +30,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-}); 
+});
